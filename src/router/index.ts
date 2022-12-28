@@ -7,6 +7,7 @@ import {
 } from 'vue-router';
 
 import routes from './routes';
+import { useExampleStore } from 'stores/example-store'
 
 /*
  * If not building with SSR mode, you can
@@ -31,6 +32,12 @@ export default route(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
+
+  Router.beforeEach(async (to, from, next) => {
+      const exampleStore = useExampleStore() // cause error of useI18n in example-store.ts
+      // do Sth with exampleStore
+      next()
+    })
 
   return Router;
 });

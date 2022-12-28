@@ -1,15 +1,14 @@
 import { defineStore } from 'pinia';
+import { useI18n } from 'vue-i18n'
 
-export const useCounterStore = defineStore('counter', {
-  state: () => ({
-    counter: 0,
-  }),
-  getters: {
-    doubleCount: (state) => state.counter * 2,
-  },
-  actions: {
-    increment() {
-      this.counter++;
-    },
-  },
+export const useExampleStore = defineStore('example', () => {
+  const i18n = useI18n()
+
+  function doSthWithI18n() {
+    return i18n.t('failed')
+  }
+
+  return {
+    doSthWithI18n,
+  }
 });
